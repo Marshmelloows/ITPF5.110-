@@ -1,0 +1,44 @@
+#book options
+book_options = ("alice", "gweto", "sputnic","penis")
+
+#prints books in list 
+def book_loader():
+    print("}/~~~~~~~~~~~~~~~\{")
+    print("|  Avalible books |")
+    print("|{===============}|")
+    for book in book_options:
+       print(f"|   | {book:<12}|")
+    print("\_________________/")
+
+#stores the shonra of what the books are sorted into
+def jonra():
+   print (horror = [])
+   print (fanticy = [])
+   print (romance = [])
+   print (animated =[])
+
+#line of code that asks if the user want to add a new book
+def new_book():
+    add = input("would you like to add a book?? Yes/No:").lower()
+    if add == "yes":
+        adding()
+    elif add == "no":
+        print("sorry")
+    else:
+        print("that was not a answer!!:")
+
+#line of code that asks for book checks if thats what they want to add and gives the book
+def adding():
+    book_conformation = input("please add the book you would like to add into our book reader:").lower()
+    your_book = input(book_conformation)("is this the book you wish to add??. yes/no:")
+    if your_book == "yes":
+        print("hi")
+
+
+
+
+#main loop
+while True:
+    print ("thease are the books we have")
+    book_loader()
+    new_book()
