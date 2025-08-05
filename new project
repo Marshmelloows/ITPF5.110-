@@ -1,1 +1,79 @@
+import random
+
+
+
+#list of results
+avrage = []
+grades = ("A, b, c, d, n,")
+full_score=(False)
+
+#grade stuffers
+
+def finish():
+    total = input("do you wish to see your total score??:")
+    if total ==("yes"):
+        print("that was your results",avrage)
+        print("thease are the grade",grades)
+        full_score  == True
+        what_grade()
+
+
+
+
+#this is the finle print for what the grade is 
+def what_grade():
+    if avrage[0] >81 and avrage <= 100:
+        print("you got an",grades[0],("well done"))
+    elif avrage[0] >71:
+        print("you got an",grades[1],("well done"))
+    elif avrage[0] >61:
+        print("you got an",grades[2],("well done"))
+    elif avrage[0] >51:
+        print("you got an",grades[3],("well done"))
+    elif avrage[0] >=0:
+        print("you got an",grades[4],("you disapointment"))
+
+        
+    
+
+#code that turns an input into a number
+def string_int(str_number):
+    try:
+        Course_results = int(str_number)
+        return True,Course_results
+    except ValueError:
+        return False,0
+    
+
+
+
+#code that checks if the value inputed is a true number
+def Course_results2():
+    if Course_results == 100:
+        print("you have not inputed a corect number value")
+    elif Course_results ==0:
+        print("this  not a valid value")
+    else:
+        print("your score was.",Course_results)
+        avrage.append(Course_results)
+
+        print(avrage)
+
+
+
+
+
+while  True:
+
+    Course_results = int(input("what is your Course_results:"))
+    isnumber,value = string_int(Course_results)
+    Course_results2()
+
+    
+
+    finish()
+
+    if full_score == True:
+        break
+    
 
