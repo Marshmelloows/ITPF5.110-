@@ -1,0 +1,231 @@
+import random
+
+# Player inventory and gold
+gold = 25
+inventory = ["Sword", "Armour", "Shield", "Healing Potion"]
+
+# All Items (fixed spelling and capitalization) holds each kind of item that will be used 
+SHIELDS = ("Buckler", "Normal_Shield", "Tower_Shield")
+SWORDS = ("Dagger", "Shortsword", "Longsword", "Claymore")
+POTIONS = ("Healing", "Speed", "Strength", "Defence", "Poison", "Intelligence", "Speechcraft")
+ARMOR = ("Cloth", "Leather", "Padded", "Chainmail", "Bronze", "Iron")
+BOWS = ("Shortbow", "Longbow", "Crossbow")
+
+# All valid items for checking
+VALID_ITEMS = list(SHIELDS + SWORDS + POTIONS + ARMOR + BOWS)
+
+# UI Screens asking for items
+def Start_screen():
+    print("/---------------------------")
+    print("| Welcome Adventurer       |")
+    print("| 1 - View Inventory       |")
+    print("| 2 - Add Item             |")
+    print("| 3 - Inventory Count      |")
+    print("| 4 - Remove Item          |")
+    print("| 5 - Swap Item            |")
+    print("| q - Quit                 |")
+    print("L___________________________/")
+
+def Item_question():
+    print("/--------------------")
+    print("|  Do you want any  |") 
+    print("|    free items?    |")
+    print("|-------------------|")
+    print("|  --->  Yes        |")
+    print("|         No        |")
+    print("L___________________/")
+
+def what_item():
+    print("/--------------------")
+    print("| What kind of items|") 
+    print("|    do you want?   |")
+    print("|-------------------|")
+    print("|    | Shields |    |")
+    print("|    | Swords  |    |")
+    print("|    | Potions |    |")
+    print("|    | Armor   |    |")
+    print("|    | Bows    |    |")
+    print("L___________________/")
+
+# Fancy item category displays for each catagory of items
+def display_shields():
+    print("/----------------------")
+    print("|   Available Shields |")
+    print("|----------------------|")
+    for shield in SHIELDS:
+        print(f"|  |  {shield:<14} |")
+    print("L______________________/")
+
+def display_swords():
+    print("/----------------------")
+    print("|   Available Swords  |")
+    print("|----------------------|")
+    for sword in SWORDS:
+        print(f"|  |  {sword:<14} |")
+    print("L______________________/")
+
+def display_potions():
+    print("/----------------------")
+    print("|   Available Potions |")
+    print("|----------------------|")
+    for potion in POTIONS:
+        print(f"|  |  {potion:<14} |")
+    print("L______________________/")
+
+def display_armor():
+    print("/----------------------")
+    print("|   Available Armor   |")
+    print("|----------------------|")
+    for arm in ARMOR:
+        print(f"|  |  {arm:<14} |")
+    print("L______________________/")
+
+def display_bows():
+    print("/----------------------")
+    print("|   Available Bows    |")
+    print("|----------------------|")
+    for bow in BOWS:
+        print(f"|  |  {bow:<14} |")
+    print("L______________________/")
+
+#depending on player output will give the corasponding item page for if the user puts in something like shields this will pick the display_shields image that i have made to give the user an idear about what they are getting 
+def choose_item_type():
+    item_type = input("Type the item category (shields, swords, potions, armor, bows): ").strip().lower()
+
+    if item_type == "shields":
+        display_shields()
+    elif item_type == "swords":
+        display_swords()
+    elif item_type == "potions":
+        display_potions()
+    elif item_type == "armor":
+        display_armor()
+    elif item_type == "bows":
+        display_bows()
+    else:
+        print("That is not a valid category.\n")
+        return
+
+    # Prompt to add an item while allso checking if the item is a real item.
+    item = input("Now enter the exact item name you'd like to add: ").strip()
+    matching_items = [i for i in VALID_ITEMS if i.lower() == item.lower()]
+    if matching_items:
+        inventory.append(matching_items[0])
+        print(f"{matching_items[0]} has been added to your inventory!\n")
+    else:
+        print("That item is not valid.\n")
+
+# Inventory functions
+def view_inventory():
+    print("\n/---------------------------")
+    print(f"| Gold: {gold:<24}|")
+    print("|---------------------------|")
+    if inventory:
+        for index, item in enumerate(inventory, start=1):
+            print(f"| Slot {index}: {item:<18}|")
+    else:
+        print("|    Inventory is empty     |")
+    print("L___________________________/")
+
+def inventory_count():
+    print("/---------------------------")
+    print(f"| Inventory Size: {len(inventory):<16}|")
+    print("L___________________________/\n")
+# in this line of code i add items due to what is needed or requested 
+def add_item():
+    print("Choose a category to add an item from:")
+    print("Categories: shields, swords, potions, armor, bows")
+    category = input("Enter a category: ").strip().lower()
+    #will check the catagory that the user has typed in displays the available items in that category
+    if category == "shields":
+        display_shields()
+        available = SHIELDS
+    elif category == "swords":
+        display_swords()
+        available = SWORDS
+    elif category == "potions":
+        display_potions()
+        available = POTIONS
+    elif category == "armor":
+        display_armor()
+        available = ARMOR
+    elif category == "bows":
+        display_bows()
+        available = BOWS
+    else:
+        print("Invalid category.\n")
+        return
+
+    item = input("Enter the name of the item you want to add: ").strip()
+    matching_items = [i for i in available if i.lower() == item.lower()]
+    if matching_items:
+        inventory.append(matching_items[0])
+        print(f"{matching_items[0]} has been added to your inventory.\n")
+    else:
+        print("That item is not valid in this category.\n")
+#this part of the code will remove items from the inventory without braking up the imedit order
+def remove_item():
+    view_inventory()
+    item = input("Enter an item name or slot number to remove: ").strip()
+    if item.isdigit():
+        index = int(item) - 1
+        if 0 <= index < len(inventory):
+            removed = inventory.pop(index)
+            print(f"{removed} has been removed.\n")
+        else:
+            print("Invalid slot number.\n")
+    else:
+        matching_items = [i for i in inventory if i.lower() == item.lower()]
+        if matching_items:
+            inventory.remove(matching_items[0])
+            print(f"{matching_items[0]} has been removed from your inventory.\n")
+        else:
+            print("That item is not in your inventory.\n")
+#this is the part of the code that allows for items to be swaped for other items 
+def swap_item():
+    old_item = input("What item do you want to swap out?: ").strip()
+    
+    # Find a matching item in the inventory regardless of case
+    matching_old = next((i for i in inventory if i.lower() == old_item.lower()), None)
+    #has a look at what you are swaping out and if you have that item
+    if matching_old:
+        new_item = input(f"What item do you want to swap your {matching_old} for?: ").strip()
+        matching_new = next((i for i in VALID_ITEMS if i.lower() == new_item.lower()), None)
+        #has a look at what you are getting to see if its valid 
+        if matching_new:
+            index = inventory.index(matching_old)
+            inventory[index] = matching_new
+            print(f"{matching_old} has been replaced with {matching_new}.\n")
+        else:
+            print("That new item is not valid.\n")
+    else:
+        print("That item is not in your inventory.\n")
+
+
+# Game Start/main loop
+while True:
+    Start_screen()
+    options = input("Enter an option: ").lower()
+
+    if options == "1":
+        view_inventory()
+        Item_question()
+        wants_items = input("Do you want some free items? (yes/no): ").lower()
+        if wants_items == "yes":
+            what_item()
+            choose_item_type()
+    elif options == "2":
+        what_item()
+        add_item()
+    elif options == "3":
+        inventory_count()
+    elif options == "4":
+        remove_item()
+    elif options == "5":
+        view_inventory()
+        swap_item()
+    elif options == "q":
+        print("Goodbye, adventurer!")#finishes program
+        break
+    else:
+        print("Invalid option. Please choose 1–5 or q.\n")
