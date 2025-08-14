@@ -1,0 +1,96 @@
+""" ITPF5.110 Programming fundamentals - Assessment 1
+
+Implement a very simple ereader
+
+Document formatting as per https://realpython.com/python-project-documentation-with-mkdocs/
+
+"""
+import os  # for file operations https://www.learnbyexample.org/python-file-handling/
+import time
+import sys
+book_options = ("1:alice", "2:gweto", "3:sputnic","4:is", "5:the book of the dead", "6:the book of the living", "7:the book of the dead 2", "8:the book of the living 2", "9:the book of the dead 3", "10:the book of the living 3")
+
+#slow print function
+#this function prints text one character at a time with a delay
+def slow_print(text: str, delay: float = 0.003): 
+    """Prints text one character at a time with a delay."""
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(delay)
+    print()  # Print a newline at the end
+
+def ChooseBook():
+    print("  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
+    print("|          Avalible books        |")
+    print("|{==============================}|")
+    for book in book_options :
+       slow_print(f"|   | {book:<27}|") # allows a slow print of my book list from book options wtil givinga padding of 27 to allow for the border of my panle to look good
+    print("|{==============================}|")
+    print("|       please pick one of       |")
+    print("|           thease books         |")
+    print("L________________________________j")
+    #waits so that the reader can atuley read the list 
+    time.sleep(1)
+
+#as
+#grabs the book that is requested 
+
+#askes for 
+def getting_book():
+    book_number = int(input("Enter the book number you want to read or use 0 to quit: "))
+    if book_number ==0:
+        print("ok u have picked to quit!")
+    elif 1 <= book_number <= len(book_options):
+        book = book_options[book_number - 1]#makes it so that when the user puts in 1 python reads it as 0. this is good because python lists start at 0 meaning that this will make it act like 0 is 1 
+    else:
+        print("Invalid book number. Please try again.")
+        getting_book()  # Recursively call to get a valid book number
+    return print (f"{book}")#returns the positon of the book in the list
+    
+    pass
+
+def ReadBookList():
+    """ Read in a list of books from a text file into a list
+        A text file contains the list of books. This is opened and read into a list
+    Args:
+        None
+
+    Returns:
+        list: List of books as strings    
+
+    """
+    pass
+
+
+def ReadBook(book):
+    """ Open the selected book and display it for reading
+        The selected book is opened and each line printed to the screen.
+        The printing/display of each line is delayed. e.g 300ms-1sec
+    Args:
+        book (string): name of the book which is also the file name,
+        this could be a number if the books were renamed and the 
+        list index used to load the book.
+
+    Returns:
+        None
+    """
+    pass
+
+def eReader():
+    """ - Read in the booklist
+        - present a list of books to choose
+        - open the chosen book for reading
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
+if __name__ == '__main__':
+    eReader()
+
+while True:
+    ChooseBook()
+    getting_book()
