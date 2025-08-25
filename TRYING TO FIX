@@ -1,0 +1,69 @@
+#book options
+import time
+#i am importing time so that i can allow my my text to be printed at a set rate that i choose insted of evreything all at once
+
+import sys
+book_options = ("1:alice",
+     "2:gweto", "3:sputnic","4:is", "5:the book of the dead", "6:the book of the living", "7:the book of the dead 2", "8:the book of the living 2", "9:the book of the dead 3", "10:the book of the living 3")
+
+
+
+#slow print function
+#this function prints text one character at a time with a delay
+#changing the delay will work as such. makign the float number bigger will make the print slower adn making smaller will make it print faster
+def slow_print(text: str, delay: float = 0.01): 
+    """Prints text one character at a time with a delay."""
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(delay)
+    print()  # Print a newline at the end
+
+
+
+#prints books in list in a nice format
+def ChooseBook():
+    print("  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
+    print("|          Avalible books        |")
+    print("|{==============================}|")
+    for book in book_options :
+       slow_print(f"|   | {book:<27}|")#this part of
+    print("|{==============================}|")
+    print("|       please pick one of       |")
+    print("|           thease books         |")
+    print("L________________________________j")
+    #waits so that the reader can atuley read the list 
+    time.sleep(2)
+
+#grabs the book that is requested and changes the book so that 
+def getting_book():
+    try:
+        choice = int(input("enter book number"))
+
+        if choice ==0:
+            print("goodbye")
+            exit()
+
+        if 1 <= choice <= len(book_options):
+            selected_book = book_options[choice -1]
+            print(f"you have selected: {book}")
+            return selected_book
+        else:
+            print(f"Invalid number")
+    except ValueError:
+        print("that is not number")
+
+
+        
+
+def Read_books(choice):
+    if choice == 1:
+        f = open("alice_wounderland.txt", encoding = "UTF-8")
+    print(f"you have selected: {choice}")
+
+    
+    
+#main loop
+while True:
+    ChooseBook()
+    getting_book()
+    reading_book()
