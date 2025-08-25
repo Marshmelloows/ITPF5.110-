@@ -56,12 +56,29 @@ def getting_book():
 def Read_books(choice):
     if choice == 1:
         f = open("alice_wounderland.txt", encoding = "UTF-8")
-    print(f"you have selected: {choice}")
+    elif choice == 2:
+        f = open("allice_wounderland.txt, encoding = "UTF-8")
+    elif choice == 3:
+        f = open("allice_wounderland.txt, encoding = "UTF-8")
+    elif choice == 4:
+        f = open("allice_wounderland.txt, enc7ding = "UTF-8")
+    elif choice == 5:
+        f = open("allice_wounderland.txt, encoding = "UTF-8")
+    elif choice == 6:
+        f = open("allice_wounderland.txt, encoding = "UTF-8") 
+    elif choice == 7:
+        f = open("allice_wounderland.txt, encoding = "UTF-8")
+    elif choice == 8:
+        f = open("allice_wounderland.txt, encoding = "UTF-8")
+    elif choice == 9:
+        f = open("allice_wounderland.txt, encoding = "UTF-8")
+    elif choice == 10:
+        f = open("allice_wounderland.txt, encoding = "UTF-8")
 
     
     
 #main loop
 while True:
-    ChooseBook()
+    choice = getting_book()
     getting_book()
     reading_book()
