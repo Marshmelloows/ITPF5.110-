@@ -3,9 +3,7 @@ import time
 #i am importing time so that i can allow my my text to be printed at a set rate that i choose insted of evreything all at once
 
 import sys
-book_options = ("1:alice",
-     "2:gweto", "3:sputnic","4:is", "5:the book of the dead", "6:the book of the living", "7:the book of the dead 2", "8:the book of the living 2", "9:the book of the dead 3", "10:the book of the living 3")
-
+book_options = ("alice_wounderland",)
 
 
 #slow print function
@@ -19,7 +17,7 @@ def slow_print(text: str, delay: float = 0.01):
     print()  # Print a newline at the end
 
 
-
+filename = f"{title}.txt
 #prints books in list in a nice format
 def ChooseBook():
     print("  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ")
