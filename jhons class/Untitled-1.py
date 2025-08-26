@@ -1,0 +1,105 @@
+
+
+#test data
+#dont convert a number into a number 
+# we are not converting them they allredey are what they are 
+#do not wrap thease numbers into an int this is what we call literle values 
+#insted of doing
+#(day: int = int(13)) do this day: int = 13
+
+##this is my test data
+day:  int = 13
+mounth: int = 8
+year: int = 2025
+hour: int = 10
+minite: int = 0
+#start
+start_date: int = int()
+
+#the int is a number 
+#the input is a string
+#we are trusting the user to input a number
+#if they put in something random it will break
+
+
+
+day = int(input("Enter day: "))
+mounth = int(input("Enter month: "))
+year = int(input("Enter year: "))
+hour = int(input("Enter hour: "))
+minite = int(input("Enter minute: "))
+
+#year could have been currint year currint date currint month or currint day
+#this is just a test data to check if the code works
+
+
+
+
+#just checking if the year is a leap year
+#all of this makes it more easy to read and understand
+#it is not needed to check if the year is a leap year, but it is just
+#checks to see if leep to add aditional day to the days count
+#just so that the code can know internal if the year is a leap year or not
+
+isLeap = (year % 4 == 0) and (year % 100 != 0) or (year % 400 != 0) #is a seres of if statments to check if the year is a leap year. but we just using it to check a variable
+print(f"{year} is a leap year: {isLeap}")
+print(f"Date {day}/{mounth}/{year}, Time {hour}:{minite:0>2}")
+
+#
+
+days =0#accumulated days
+if mounth == 2:
+    days = 31
+elif mounth == 3:
+    days = 59
+elif mounth == 4:
+    days = 90
+elif mounth == 5:
+    days = 120
+elif mounth == 6:
+    days = 151
+elif mounth == 7:
+    days = 181
+elif mounth == 8:
+    days = 212
+elif mounth == 9:
+    days = 243
+elif mounth == 10:
+    days = 273
+elif mounth == 11:
+    days = 304
+elif mounth == 12:
+    days = 334
+
+#add in the partial amount for the current mounth to the accumulated days
+days = days + day
+#account for the extra day of the leap year
+#this is just a check to see if the year is a leap year and if the month
+
+
+
+
+#this new opereatior is += 
+#if is lep and current mountg is not january or february 
+if isLeap and (mounth > 2): #this if statement will onley triger evrey 4 years
+    days += 1  # add an extra day for leap year if the month is after February
+
+
+
+
+
+
+#finle part of the program is this 
+
+#calulate the houers and minits that have elapsed today 
+
+hours = days * 24 + hour  # convert days to hours and add the current hour
+minutes = hours * 60 + minite  # convert hours to minutes and add the current minute
+
+
+
+#show the result
+print(f"Days {days}")
+print(f"Hours {hours}")
+print(f"Minutes {minutes} since 1 January {year}, 00:00")
+#end of the program
