@@ -1,0 +1,180 @@
+"""
+a very simple text based RPG
+
+"""
+
+# https://pypi.org/project/readchar/
+# pip install readchar
+from readchar import readkey, key
+from random import randint
+
+import Toons 
+
+
+
+
+"""
+3. Create a list of the characters
+"""
+
+"""
+4. Create the following functions 
+- Attack
+- Move
+- UseSkill
+- Heal    
+"""
+
+
+# ------------------ FUNCTIONS -------------
+def Attack():
+    pass
+
+
+# Enemies: [Orc, Troll, Goblin, Ogre]
+# Heroes: [Mage, Fighter, Archer, Healer, Player]
+def Move(toon):
+    toon["location"][0] += randint(-2, 2)  # x
+    toon["location"][1] += randint(-2, 2)  # y
+    # toon["location"][2] += randint(0,5) # z
+
+    # wrap our location
+    # bounds check for X
+    if toon["location"][0] < 0:
+        toon["location"][0] = 29  # set to 0 if using a wall on the edge
+    if toon["location"][0] > 29:
+        toon["location"][0] = 0  # set to 99 if using a wall on the edge
+
+    # bounds check for Y
+    if toon["location"][1] < 0:
+        toon["location"][1] = 27  # set to 0 if using a wall on the edge
+    if toon["location"][1] > 27:
+        toon["location"][1] = 0  # set to 99 if using a wall on the edge
+
+    return toon
+
+
+def UseSkill():
+    pass
+
+
+def Heal():
+    pass
+
+
+def goLeft():
+    pass
+
+
+def goRight():
+    pass
+
+
+def goUp():
+    pass
+
+
+def goDown():
+    pass
+
+
+"""
+5. Create a 30x28, 2 dimensional list that will represent the game map
+"""
+
+
+def GenMaps(cols, rows) -> list:
+    maps = []
+
+    """
+    # example of a 5 x 5 map as 5 lists
+    floor = [[0,0,0,0,0],
+             [0,0,0,0,0],
+             [0,0,0,0,0],
+             [0,0,0,0,0],
+             [0,0,0,0,0],    
+            ]
+    # the for loop version of the list comprehension below
+    for _ in range(8):
+        floor = []
+        # create a grid 'rows' by 'cols' in size
+        for _ in range(rows):
+            row = []
+            # initialise one row
+            for _ in range(cols):
+                row.append(0)
+            floor.append(row)
+        maps.append(floor) 
+    #"""
+
+    # generate a rows x cols map for each of the 8 floors
+    for _ in range(8):
+        map: list[list] = [[0 for _ in range(cols)] for _ in range(rows)]
+        maps.append(map)
+    return maps
+
+
+""" 6. Core game functions """
+State: dict = {}  # dictionary to hold the state of the game
+
+
+def Initialise(State) -> dict:
+    # resize screen so that clear_screen works
+    # os.system("mode con cols=100 lines=30")
+
+    State["maps"] = GenMaps(20, 28)
+    return State
+
+
+def GetInput() -> str:
+    # https://github.com/magmax/python-readchar
+    inkey: str = readkey().upper()
+    # allowed keys
+    if inkey in (key.UP, key.DOWN, key.LEFT, key.RIGHT, key.SPACE, "H", "Q"):
+        print(f"{inkey = }")
+        return inkey
+    else:
+        return ""
+
+
+def UpdateState() -> dict:
+    # some test code
+    for i in range(len(Toons.Enemies)):
+        Toons.Enemies[i] = Move(Toons.Enemies[i])
+
+    return State
+
+
+def ShowGame() -> None:
+    # print("\033c", end="")    # clear the screen - check mode above
+    # pprint(State['maps'][0]) # display a map
+    for i in range(len(Toons.Enemies)):
+        print(f"{Toons.Enemies[i]['name'] = } {Toons.Enemies[i]['location'] = }")
+
+
+# ------------------ Main game loop -------------
+if __name__ == "__main__":
+    State = Initialise(State)
+
+    # some diagnostics test code
+    print(f"{Toons.Enemies = }")
+    print(f"{Toons.Heroes = }")
+
+    print(f"{Toons.Enemies[0] = }")
+    print(f"{Heroes[0] = }")
+
+    for enemy in Enemies:
+        print(f"{enemy['name']}")
+
+    for hero in Heroes:
+        print(f"{hero['name']}")
+
+    ShowGame()  # show inital map
+    while True:
+        InKey: str = GetInput()
+        State = UpdateState()
+        ShowGame()
+        if InKey == "Q":
+            exit()
+
+        break  # short circuit to just run once for testing
