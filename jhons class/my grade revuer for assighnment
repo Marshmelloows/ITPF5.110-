@@ -5,18 +5,20 @@ full_score=(False)
 your_score = []
 
 #inputed number for grades
-def int_input():
-  while True:
-    your_score = int(input("What score did you get out of 100??:")
-
-    if your_score >100 or your_score <0:
-      print("That does not work sorry")
-    elif your_score <100 and your_score >0:
-      print("That works well done:")
-      total_results.append(your_score)
-    else:
-        print("that is not an integer variablee")
-        break
+def int_number_input():
+      while True:
+            your_score = int(input("What score did you get out of 100??:"))
+                             
+            if your_score >100 or your_score <0:
+                print("That does not work sorry")
+            elif your_score <100 and your_score >0:
+                print("That works well done:")
+                total_results.append(your_score)
+            else:
+                print("that is not an integer variablee")
+                break
         #while loop that keeps asking for your score total results
 
-print (f"your_score is{your_score}")
+
+int_number_input()
+print(f"your_score is{your_score}")
