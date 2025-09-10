@@ -1,24 +1,35 @@
 #list of results
 total_results = []
 grades = ("A, b, c, d, f,")
-full_score=(False)
-your_score = []
+your_score:int = 0
+
+
 
 #inputed number for grades
 def int_number_input():
       while True:
-            your_score = int(input("What score did you get out of 100??:"))
-                             
-            if your_score >100 or your_score <0:
-                print("That does not work sorry")
-            elif your_score <100 and your_score >0:
-                print("That works well done:")
-                total_results.append(your_score)
-            else:
+            try:
+                your_score = int(input("What score did you get out of 100??:"))
+                print (your_score)
+                if your_score >100 or your_score <0:
+                    print("That does not work sorry")
+                elif your_score <100 and your_score >0:
+                    print("That works well done:")
+                    total_results.append(your_score)
+                    print(total_results)
+                elif your_score == ("q"):
+                    addup()
+            except ValueError:
                 print("that is not an integer variablee")
-                break
+                addup()
         #while loop that keeps asking for your score total results
 
 
+#addup end
+def addup():
+    results = total_results[0] + total_results[1]
+    print (results)
+
+
 int_number_input()
-print(f"your_score is{your_score}")
+print(f"your_score is{your_score}") 
