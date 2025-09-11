@@ -1,3 +1,30 @@
+#setup for guizero
+import guizero as gz
+
+app = gz.App(
+            title ="assesment calulator",
+            height=300, width=300,
+            
+            )
+
+
+
+text = gz.Text(app,text="Assesment grade calulator")
+#-----Textbox-----#
+
+#--Widget events--#
+def Calulate():
+    text1.value = "calulated"
+#-----Widgets-----#
+text1 = gz.Text(app, text="Click to Calulate")
+Calulate_buttion = gz.PushButton(app, text="Calulate", command=Calulate)
+name_label = gz.Text(app, text="Name", grid=[0,0], align="left")
+Assighnment1 = gz.TextBox(app, grid=[1,0])
+surname_label = gz.Text(app, text="Surname", grid=[0,1], align="left")
+Assighnment2 = gz.TextBox(app, grid=[1,1])
+dob_label = gz.Text(app, text="Date of Birth", grid=[0,2], align="left")
+Assighnment3 = gz.TextBox(app, grid=[1,2])
+
 #list of results
 total_results = []
 grades = ("A, b, c, d, f,")
@@ -24,7 +51,7 @@ def int_number_input():
                 addup()
         #while loop that keeps asking for your score total results
 
-
+app.display()
 #addup end
 def addup():
     results = total_results[0] + total_results[1]
