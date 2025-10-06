@@ -1,0 +1,62 @@
+#setup for guizero
+import guizero as gz
+
+app = gz.App(
+            title ="assesment calulator",
+            height=300, width=300,
+            
+            )
+
+
+
+text = gz.Text(app,text="Assesment grade calulator")
+#-----Textbox-----#
+
+#--Widget events--#
+def Calulate():
+    text1.value = "calulated"
+#-----Widgets-----#
+text1 = gz.Text(app, text="Click to Calulate")
+Calulate_buttion = gz.PushButton(app, text="Calulate", command=Calulate)
+name_label = gz.Text(app, text="Name", grid=[0,0], align="left")
+Assighnment1 = gz.TextBox(app, grid=[1,0])
+surname_label = gz.Text(app, text="Surname", grid=[0,1], align="left")
+Assighnment2 = gz.TextBox(app, grid=[1,1])
+dob_label = gz.Text(app, text="Date of Birth", grid=[0,2], align="left")
+Assighnment3 = gz.TextBox(app, grid=[1,2])
+
+#list of results
+total_results = []
+grades = ("A, b, c, d, f,")
+your_score:int = 0
+
+
+
+#inputed number for grades
+def int_number_input():
+      while True:
+            try:
+                your_score = int(input("What score did you get out of 100??:"))
+                print (your_score)
+                if your_score >100 or your_score <0:
+                    print("That does not work sorry")
+                elif your_score <100 and your_score >0:
+                    print("That works well done:")
+                    total_results.append(your_score)
+                    print(total_results)
+                elif your_score == ("q"):
+                    addup()
+            except ValueError:
+                print("that is not an integer variablee")
+                addup()
+        #while loop that keeps asking for your score total results
+
+app.display()
+#addup end
+def addup():
+    results = total_results[0] + total_results[1]
+    print (results)
+
+
+int_number_input()
+print(f"your_score is{your_score}") 
