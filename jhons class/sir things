@@ -1,0 +1,104 @@
+#object programing
+
+#do incapsulation
+
+""""""
+from typing import Any
+
+# Card Dictionary
+#card:dict[str,Any] = {"suit":"", "colour":"", "value":0}
+
+
+
+class Card: 
+    
+    def __init__(self, suit, colour, value):#This function is indented ##the init and this here allos you to just call your function without callign the functions
+        self.suit = suit #this suit is a local vereable created by this argument
+        self.colour = colour
+        self.value = value
+    
+    def getSuit(self):
+        return self.suit
+    
+    def setSuit(self,value:str):#testing the value as an argument
+        # value must contain something 
+        if not value:
+            raise ValueError
+        # value must be a string 
+        if not isinstance(value,str):
+            raise ValueError
+        # value can only habe 1 of four values
+        if value.lower() not in ["clubs","spades","hearts","diamonds"]:
+            raise ValueError
+        
+        self.suit = value
+    
+card = Card("spades","black",1)
+
+card.setSuit("spades")
+
+
+
+
+
+print(card.suit)
+
+# card fuctions
+
+#deck
+class Deck:
+    def __init__(self):
+        self.deck:list[Card] =[]
+        self.makeDeck()
+
+    def makeDeck(self):
+        for c in range(13):
+            card = Card("Spades","Black",c+1)
+            self.deck.append(card)
+            card = Card("Clubs","Black",c+1)
+            self.deck.append(card)
+            card = Card("Hearts","Red",c+1)
+            self.deck.append(card)
+            card = Card("Diamonds","Red",c+1)
+            self.deck.append(card)
+    
+    def shuffle(self)->dict:
+        pass
+
+    def dealcard(self)->dict:
+        pass
+
+    def dealhand(self)->list:
+        pass
+
+decks = []
+deck = Deck()
+for _ in range(4):
+    decks.append(Deck())
+print(len(deck.deck))
+# Create object definition2
+
+
+
+
+
+
+
+
+
+
+x = [0,1,2,3,4,5]
+#X is the object
+#it protects the data inside it 
+#we need to append the 
+
+
+#0 is the number asoseyated with that object
+
+
+#vereable is vereable 
+#function is a function
+
+#cupple functions with vereables 
+
+#when you access the data u are accesing the bevaure between that data
