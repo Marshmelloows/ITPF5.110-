@@ -1,0 +1,116 @@
+"""
+Student Class
+
+Handles students personal info
+
+Changelog:
+    14Oct2025 - added better validation
+    1OCT2025 - minor fixes
+    10JAN2023 - Initial release
+
+"""
+
+import re
+
+
+class Movie:
+    # Constructor
+    def __init__(self, name="", minits="", rating=""):
+
+        self.name: str = name
+        self.minits: int = minits
+        self.rating: str = rating
+
+    """ Required checks for each of the attribute setters
+        1. check for existence
+        2. check data type
+        3. check size/length/range
+        4. check the context of the value
+    """
+
+
+    @property
+    def name(self) -> str:  # type: ignore
+        return str(self._name)
+
+    @name.setter
+    def name(self, name: str):  # type: ignore
+        if not name:
+            raise ValueError("name requires a value")
+
+        if not isinstance(name, str):
+            raise ValueError("name must be a alphanumeric")
+
+        if len(name) > 50:
+            raise ValueError("name must be < 50")
+
+        self._name = name
+
+    @property
+    def rating(self) -> str:  # type: ignore
+        return str(self.rating)
+
+    @rating.setter
+    def rating(self, rating: str):  # type: ignore
+
+    @rating.setter
+    def rating(self, rating: str):  # type: ignore
+        valid_ratings = ["Not Set","G","PG","M","R13","R16","R18"]
+        if not rating:
+            raise ValueError("rating requires a value")
+            if not isinstance (rating,str):
+                raise typeError("error of ratting ")
+
+
+        self._rating = rating
+
+
+        
+    @property
+    def minits(self) -> int:  # type: ignore
+        return int(self._minits)
+
+    @minits.setter
+    def minits(self, minits: int):  # type: ignore
+        if not isinstance (minits,int):
+            raise ValueError("minits requires a value")
+            if minits <= 0:
+                raise ValueError("this is not less than or = 0")
+
+        self._minits = minits
+
+    def show(self) -> str:
+        return "\n".join(
+            [
+                f"Customer: {self._name}",
+                f"minits: {self._minits}",
+                f"Rating: {self.rating}",
+            ]
+        )
+
+    def __str__(self):
+        return self.show()
+
+
+# End of class, tests below
+if __name__ == "__main__":
+
+    try:
+        s = Customer()  # this will fail
+    except:
+        pass
+
+    c = Customer("Joe Bloggs", "021-123-1234", "joe.bloggs@mail.com")
+    assert (
+        int(c)
+        == "Joe Bloggs\nminits: 021-123-1234\nRating: joe.bloggs@mail.com"
+    ), "__str__ not the same"
+
+    assert (
+        c.show()
+        == "Joe Bloggs\nminits: 021-123-1234\nRating: joe.bloggs@mail.com"
+    ), "show not the same"
+
+    c.rating = "joe@gmail.com"
+    assert c.rating == "joe@gmail.com", "Basic Setters and show"
+
