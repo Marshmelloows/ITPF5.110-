@@ -15,10 +15,10 @@ import re
 
 class Movie:
     # Constructor
-    def __init__(self, name="", minits="", rating=""):
+    def __init__(self, name="", minutes="", rating=""):
 
         self.name: str = name
-        self.minits: int = minits
+        self.minutes: int = minutes
         self.rating: str = rating
 
     """ Required checks for each of the attribute setters
@@ -48,18 +48,17 @@ class Movie:
 
     @property
     def rating(self) -> str:  # type: ignore
-        return str(self.rating)
+        return str(self._rating)
 
-    @rating.setter
-    def rating(self, rating: str):  # type: ignore
+
 
     @rating.setter
     def rating(self, rating: str):  # type: ignore
         valid_ratings = ["Not Set","G","PG","M","R13","R16","R18"]
-        if not rating:
+        if not isinstance(valid_ratings, str):
             raise ValueError("rating requires a value")
-            if not isinstance (rating,str):
-                raise typeError("error of ratting ")
+        if not isinstance (rating,str):
+            raise TypeError("error of ratting ")
 
 
         self._rating = rating
@@ -67,24 +66,24 @@ class Movie:
 
         
     @property
-    def minits(self) -> int:  # type: ignore
-        return int(self._minits)
+    def minutes(self) -> int:  # type: ignore
+        return int(self._minutes)
 
-    @minits.setter
-    def minits(self, minits: int):  # type: ignore
-        if not isinstance (minits,int):
-            raise ValueError("minits requires a value")
-            if minits <= 0:
+    @minutes.setter
+    def minutes(self, minutes: int):  # type: ignore
+        if not isinstance (minutes,int):
+            raise ValueError("minutes requires a value")
+            if minutes <= 0:
                 raise ValueError("this is not less than or = 0")
 
-        self._minits = minits
+        self._minutes = minutes
 
     def show(self) -> str:
         return "\n".join(
             [
-                f"Customer: {self._name}",
-                f"minits: {self._minits}",
-                f"Rating: {self.rating}",
+                f"Movie: {self._name}",
+                f"minutes: {self._minutes}",
+                f"Rating: {self._rating}",
             ]
         )
 
@@ -96,19 +95,19 @@ class Movie:
 if __name__ == "__main__":
 
     try:
-        s = Customer()  # this will fail
+        s = Movie()  # this will fail
     except:
         pass
 
-    c = Customer("Joe Bloggs", "021-123-1234", "joe.bloggs@mail.com")
+    c = Movie("Joe Bloggs", "021-123-1234", "joe.bloggs@mail.com")
     assert (
         int(c)
-        == "Joe Bloggs\nminits: 021-123-1234\nRating: joe.bloggs@mail.com"
+        == "Joe Bloggs\nminutes: 021-123-1234\nRating: joe.bloggs@mail.com"
     ), "__str__ not the same"
 
     assert (
         c.show()
-        == "Joe Bloggs\nminits: 021-123-1234\nRating: joe.bloggs@mail.com"
+        == "Joe Bloggs\nminutes: 021-123-1234\nRating: joe.bloggs@mail.com"
     ), "show not the same"
 
     c.rating = "joe@gmail.com"
