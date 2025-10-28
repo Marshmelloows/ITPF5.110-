@@ -99,17 +99,16 @@ if __name__ == "__main__":
     except:
         pass
 
-    c = Movie("Joe Bloggs", "021-123-1234", "joe.bloggs@mail.com")
+    c = Movie("MR POTTER", "21", "10/10")
     assert (
         int(c)
-        == "Joe Bloggs\nminutes: 021-123-1234\nRating: joe.bloggs@mail.com"
+        == "MR POTTER\nminutes: 21\nRating: 10/10"
     ), "__str__ not the same"
 
     assert (
         c.show()
-        == "Joe Bloggs\nminutes: 021-123-1234\nRating: joe.bloggs@mail.com"
+        == "MR POTTER\nminutes:21\nRating: 10/10"
     ), "show not the same"
 
     c.rating = "joe@gmail.com"
     assert c.rating == "joe@gmail.com", "Basic Setters and show"
-
