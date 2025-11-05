@@ -13,13 +13,13 @@ Changelog:
 import re
 
 #-------------------Custiomer class------------------#
-class custiomer:
+class customer:
     # Constructor
     def __init__(self, name="", contact="", email=""):
 
-        self.name: str = name
-        self.contact: str = contact
-        self.email: str = email
+        self.name = name
+        self.contact = contact
+        self.email = email
 
     """ Required checks for each of the attribute setters
         1. check for existence
@@ -87,9 +87,9 @@ class custiomer:
     def show(self) -> str:
         return "\n".join(
             [
-                f"Customer: {self._name}",
-                f"Contact: {self._contact}",
-                f"Email: {self._email}",
+                f"Customer: {self.name}",
+                f"Contact: {self.contact}",
+                f"Email: {self.email}",
             ]
         )
 
@@ -100,21 +100,18 @@ class custiomer:
 # End of class, tests below
 if __name__ == "__main__":
 
-    try:
-        s = custiomer()  # this will fail
-    except:
-        pass
 
-    c = custiomer("Joe Bloggs", "021-123-1234", "joe.bloggs@mail.com")
+
+    c = customer("Joe Bloggs", "021-123-1234", "joe.bloggs@mail.com")
     assert (
         str(c)
-        == "Joe Bloggs\nContact: 021-123-1234\nEmail: joe.bloggs@mail.com"
+        == "Customer: Joe Bloggs\nContact: 021-123-1234\nEmail: joe.bloggs@mail.com"
     ), "__str__ not the same"
 
     assert (
         c.show()
-        == "Joe Bloggs\nContact: 021-123-1234\nEmail: joe.bloggs@mail.com"
+        == "Customer: Joe Bloggs\nContact: 021-123-1234\nEmail: joe.bloggs@mail.com"
     ), "show not the same"
 
-    c.email = "joe@gmail.com"
-    assert c.email == "joe@gmail.com", "Basic Setters and show"
+    c.email = "joe.bloggs@mail.com"
+    assert c.email == "joe.bloggs@mail.com", "Basic Setters and show"

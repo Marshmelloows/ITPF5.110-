@@ -10,7 +10,7 @@ import re
 
 #---------------Bookings class---------------#
 class Bookings:
-    def __init__(self, bookingid, date, customer, session, seats, movie, time):
+    def __init__(self, bookingid, date, customer, session, seats, movie, email, time):
         self._bookingid = bookingid
         self._date = date
         self._customer = customer
@@ -18,6 +18,7 @@ class Bookings:
         self._seats = seats
         self._movie = movie
         self._time = time
+        self._email = email
 
 
 #-----------Booking id Propoty----------------#
@@ -120,7 +121,7 @@ if __name__ == "__main__":
     except:
         pass
 
-    b = Bookings("MR POTTER", "21", "PG")
+    b = Bookings("MR POTTER", "21", "PG", "hi", "hi", "hi", "hi" , "hi")
     assert (
         int(b)
         == "MR POTTER\nminutes: 21\nRating: PG"
@@ -131,5 +132,5 @@ if __name__ == "__main__":
         == "MR POTTER\nminutes:21\nRating: 10/10"
     ), "show not the same"
 
-    b.rating = "joe@gmail.com"
-    assert b.rating == "joe@gmail.com", "Basic Setters and show"
+    b.movie = "joe@gmail.com"
+    assert b.movie == "joe@gmail.com", "Basic Setters and show"

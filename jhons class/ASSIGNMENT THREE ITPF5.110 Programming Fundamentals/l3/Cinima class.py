@@ -28,7 +28,7 @@ class Cinema:
             if self._movies[i].code == movie:
                 del self._movies[i]
             break
-    
+            
         self._movies
 
 #-------------<Find~Movie~Items>-------------#

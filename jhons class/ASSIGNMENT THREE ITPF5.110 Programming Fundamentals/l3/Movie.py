@@ -18,9 +18,9 @@ class Movie:
     # Constructor
     def __init__(self, name="", minutes="", rating=""):
 
-        self.name: str = name
-        self.minutes: int = minutes
-        self.rating: str = rating
+        self.name = name
+        self.minutes = minutes
+        self.rating = rating
 
     """ Required checks for each of the attribute setters
         1. check for existence
@@ -32,15 +32,15 @@ class Movie:
 #---------------------<Name>----------------#
     @property
     def name(self) -> str:  # type: ignore
-        return str(self._name)
+        return self._name
 
-    @name.setter
+    @name.setter    
     def name(self, name: str):  # type: ignore
         if not name:
             raise ValueError("name requires a value")
 
         if not isinstance(name, str):
-            raise ValueError("name must be a alphanumeric")
+            raise TypeError("name must be a alphanumeric")
 
         if len(name) > 50:
             raise ValueError("name must be < 50")
@@ -49,15 +49,17 @@ class Movie:
 #----------------------<Rating>----------------#
     @property
     def rating(self) -> str:  # type: ignore
-        return str(self._rating)
+        return self._rating
 
     @rating.setter
     def rating(self, rating: str):  # type: ignore
-        valid_ratings = ["Not Set","G","PG","M","R13","R16","R18"]
-        if not isinstance(valid_ratings, str):
+        valid_ratings = ["Not Set", "G", "PG", "M", "R13" ,"R16" ,"R18" ]
+        if not rating:
             raise ValueError("rating requires a value")
-        if not isinstance (rating,str):
-            raise TypeError("error of rating ")
+        if not isinstance(rating, str):
+            raise TypeError("Rating must be a string")
+        if rating not in valid_ratings:
+            raise ValueError(f"Rating must be of {valid_ratings}")
 
 
         self._rating = rating
@@ -66,23 +68,27 @@ class Movie:
 
     @property
     def minutes(self) -> int:  # type: ignore
-        return int(self._minutes)
+        return self._minutes
 
     @minutes.setter
     def minutes(self, minutes: int):  # type: ignore
+        if not isinstance (minutes,str):
+            minutes = int(minutes)
+        
         if not isinstance (minutes,int):
-            raise ValueError("minutes requires a value")
-            if minutes <= 0:
-                raise ValueError("this is not less than or = 0")
+            raise TypeError("minits as intager")
+        
+        if minutes <= 0:
+            raise ValueError("this is not less than or = 0")
 
         self._minutes = minutes
 #---------------<Show>---------------#
     def show(self) -> str:
         return "\n".join(
             [
-                f"Movie: {self._name}",
-                f"minutes: {self._minutes}",
-                f"Rating: {self._rating}",
+                f"Movie: {self.name}",
+                f"minutes: {self.minutes}",
+                f"Rating: {self.rating}",
             ]
         )
 
@@ -94,20 +100,22 @@ class Movie:
 if __name__ == "__main__":
 
     try:
-        s = Movie()  # this will fail
+        m = Movie()  # this will fail
     except:
         pass
 
-    c = Movie("MR POTTER", "21", "PG")
+    m = Movie("MR POTTER", 21, "PG")
+
     assert (
-        int(c)
-        == "MR POTTER\nminutes: 21\nRating: PG"
+
+        str(m)
+        == "Movie: MR POTTER\nminutes: 21\nRating: PG"
     ), "__str__ not the same"
 
     assert (
-        c.show()
-        == "MR POTTER\nminutes:21\nRating: 10/10"
+        m.show()
+        == "Movie: MR POTTER\nminutes: 21\nRating: PG"
     ), "show not the same"
 
-    c.rating = "joe@gmail.com"
-    assert c.rating == "joe@gmail.com", "Basic Setters and show"
+    m.rating = "PG"
+    assert m.rating == "PG", "Basic Setters and show"
